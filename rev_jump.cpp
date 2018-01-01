@@ -306,7 +306,7 @@ int main(int argc, char** argv) {
     } 
 
     std::cout << "Target mixture:\n" 
-              << "L(theta|x) = " << rev_jump.log_likelihood(mixture) << std::endl;
+              << "log L(theta|x) = " << rev_jump.log_likelihood(mixture) << std::endl;
     mixture.dump();
 
     for (size_t d = 1; d < weights.size(); d++) {
@@ -314,8 +314,7 @@ int main(int argc, char** argv) {
         std::cout << d << ": " << count[d] << " ----------------------------------------\n";
         Mixture estimate(std::move(weights[d]), std::move(gaussians[d]));
         estimate.dump();
-        std::cout << "L(theta|x) = " << rev_jump.log_likelihood(estimate) << std::endl;
+        std::cout << "log L(theta|x) = " << rev_jump.log_likelihood(estimate) << std::endl;
     }
-    //for (auto d : data) std::cout << d << '\n';
     return 0;
 }
